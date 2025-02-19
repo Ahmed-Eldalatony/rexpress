@@ -1,11 +1,10 @@
-// client/vite.config.ts
+//// client/vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // Specify the client directory as the project root for Vite:
   root: process.cwd(),
   resolve: {
     alias: {
@@ -20,6 +19,14 @@ export default defineConfig({
   },
   build: {
     // Output the built files into the client/dist folder (so Express can serve them)
-    outDir: 'dist'
+    outDir: 'dist',
+    // This tells Vite which file to use as the entry point for the server bundle.
+    ssr: 'src/entry-server.tsx',
+    rollupOptions: {
+      // Here you can customize the output for your SSR bundle.
+      output: {
+        // Customize options as needed. For example, you could define directory paths or file naming conventions.
+      }
+    }
   }
 });
