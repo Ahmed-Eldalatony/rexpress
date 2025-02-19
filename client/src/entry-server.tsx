@@ -1,10 +1,29 @@
 // src/entry-server.jsx
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import App from './App';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
 
-export function render(url, context) {
-  // You can use the URL to handle routing if needed
-  const appHtml = renderToString(<App />);
-  return appHtml;
+import App from './App';
+export function render(url, context = {}) {
+  let PageComponent;
+
+  // Use Express routing logic to decide which component to render
+  switch (url) {
+    case '/':
+      PageComponent = HomePage;
+      break;
+    case '/about':
+      PageComponent = AboutPage;
+      break;
+    default:
+      // For any route not explicitly handled, set a 404 status.
+      context.status = 404;
+      PageComponent = NotFoundPage;
+      break;
+  }
+
+  // Render the selected component to an HTML string
+  return renderToString(<App />);
 }
