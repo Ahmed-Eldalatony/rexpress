@@ -64,7 +64,7 @@ async function createServer() {
           'utf-8'
         );
         // Load the pre-built SSR bundle from client/dist-sever.
-        const ssrModule = require(path.resolve(__dirname, '../client/dist-sever/entry-server.js'));
+        const ssrModule = require(path.resolve(__dirname, '../client/dist-server/entry-server.js'));
         // Render the page to a string.
         const appHtml = ssrModule.render(url, {});
         // Inject the rendered HTML into the template.
