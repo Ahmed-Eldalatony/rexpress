@@ -16,7 +16,7 @@ async function createServer() {
   if (isDev) {
     // --- DEVELOPMENT MODE ---
     // Create Vite server in middleware mode for HMR and dynamic SSR loading.
-    const { createServer: createViteServer } = await import('vite');
+    const { createServer: createViteServer } = await import('vite', { type: 'module' });
     const vite = await createViteServer({
       server: { middlewareMode: 'html' },
       // Set the client root folder
