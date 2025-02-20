@@ -5,15 +5,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:client": "vite build --config vite.client.config.ts",
+    "build:server": "vite build --config vite.server.config.ts",
     "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
+    "tsc": "^2.0.4",
+    "typescript": "^4.9.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "typescript": "^4.9.0",
+    "@types/node": "^18.14.6",
     "vite": "^4.0.0"
   }
 }

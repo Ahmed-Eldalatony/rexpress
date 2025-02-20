@@ -1,22 +1,19 @@
 {
+  "type": "module",
   "compilerOptions": {
-    "target": "ES2020",
     "module": "CommonJS",
-    "outDir": "../dist/server",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "esModuleInterop": true,
     "rootDir": ".",
     "strict": false,
-    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "*": [
         "node_modules/*"
       ],
-      "skipLibCheck": true
     },
-    "include": [
-      "**/*.ts"
-    ],
-    "esModuleInterop": true,
+    "noEmit": true,
     "allowSyntheticDefaultImports": true
   }
 }

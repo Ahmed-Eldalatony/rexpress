@@ -19,7 +19,7 @@ export default defineConfig({
   },
   build: {
     // Output the built files into the client/dist folder (so Express can serve them)
-    outDir: 'dist',
+    outDir: 'dist-server',
     // This tells Vite which file to use as the entry point for the server bundle.
     ssr: 'src/entry-server.tsx',
     rollupOptions: {
