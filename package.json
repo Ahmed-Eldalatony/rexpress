@@ -4,15 +4,16 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "node --watch --experimental-strip-types server/index.ts",
-    "start": " NODE_ENV=production  node --experimental-strip-types server/index.ts",
-    "build": "cd client && npm run build:client &&  npm run build:server"
+    "dev": "node --watch --experimental-strip-types api/index.ts",
+    "vercel-dev": "node --watch --experimental-strip-types api/index.ts",
+    "start": " NODE_ENV=production  node --experimental-strip-types api/index.ts",
+    "build": "cd client && npm run build:client &&  npm run build:server",
+    "vercel-build": "cd client && npm run build:client &&  npm run build:server"
   },
   "dependencies": {
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.0",
     "@types/express": "^4.18.2",
     "vite": "^4.0.0"

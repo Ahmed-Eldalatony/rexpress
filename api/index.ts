@@ -3,20 +3,17 @@ import path from 'path';
 import fs from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-//import { configure as serverlessExpress } from '@vendia/serverless-express';
 const app = express();
 async function createServer() {
   const isDev = process.env.NODE_ENV !== 'production';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-  // These are fallback static directories (if you have any extra assets in build/public)
-  app.use(express.static(path.join(__dirname, 'build')));
-  app.use(express.static(path.join(__dirname, 'public')));
-
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  app.get('/ping', (req, res) => {
+    res.send('pong');
+  });
   if (isDev) {
     // --- DEVELOPMENT MODE ---
     // Create Vite server in middleware mode for HMR and dynamic SSR loading.
-    //
     console.log("DEVELOPMENT")
     const { createServer: createViteServer } = await import('vite', { type: 'module' });
     const vite = await createViteServer({
@@ -79,12 +76,15 @@ const __dirname = dirname(__filename);
     });
   }
 
-  // Start the Express server.
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
-  });
+  // Start the Express server, Uncomment in Development
+  //const port = process.env.PORT || 3000;
+  //app.listen(port, () => {
+  //  console.log(`Server is listening on port ${port}`);
+  //});
 }
 
-createServer();
-
+const serverInitPromise = createServer();
+export default async function handler(req, res) {
+  await serverInitPromise;
+  return app(req, res);
+}
