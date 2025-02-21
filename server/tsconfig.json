@@ -1,5 +1,5 @@
 {
-  "type": "module",
+  "type": "CommonJs",
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "NodeNext",

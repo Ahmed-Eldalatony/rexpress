@@ -1,14 +1,14 @@
 import express from 'express';
 import path from 'path';
-import { dirname } from 'path';
 import fs from 'fs';
+import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+//import { configure as serverlessExpress } from '@vendia/serverless-express';
 const app = express();
 async function createServer() {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
   const isDev = process.env.NODE_ENV !== 'production';
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
   // These are fallback static directories (if you have any extra assets in build/public)
   app.use(express.static(path.join(__dirname, 'build')));
   app.use(express.static(path.join(__dirname, 'public')));
@@ -16,6 +16,8 @@ async function createServer() {
   if (isDev) {
     // --- DEVELOPMENT MODE ---
     // Create Vite server in middleware mode for HMR and dynamic SSR loading.
+    //
+    console.log("DEVELOPMENT")
     const { createServer: createViteServer } = await import('vite', { type: 'module' });
     const vite = await createViteServer({
       server: { middlewareMode: 'html' },
@@ -50,6 +52,7 @@ async function createServer() {
     });
   } else {
     // --- PRODUCTION MODE ---
+    console.log("PRODUCTION")
     // Serve static client assets (HTML, CSS, JS) from the dist-client folder.
     const clientDistPath = path.resolve(__dirname, '../client/dist-client');
     app.use(express.static(clientDistPath));
