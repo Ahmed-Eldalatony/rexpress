@@ -6,5 +6,6 @@
       "destination": "/api"
     }
   ],
-   "outputDirectory": "client/dist-client"
+   "outputDirectory": "client/dist-client",
+  "installCommand": "npm install && npm install --prefix client"
 }
